@@ -1,0 +1,15 @@
+# Secrets - kabhi commit mat karna
+.env
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+dist/
+
+# Mac / editor
+.DS_Store
+.vscode/
