@@ -28,3 +28,19 @@ def list_articles():
         {"id": r[0], "title": r[1], "content": r[2]}
         for r in rows
     ]
+
+
+@app.get("/articles/search")
+def search_articles(q: str):
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute(
+                "SELECT id, title, content FROM kb_articles "
+                "WHERE title ILIKE %s OR content ILIKE %s ORDER BY id",
+                (f"%{q}%", f"%{q}%"),
+            )
+            rows = cur.fetchall()
+    return [
+        {"id": r[0], "title": r[1], "content": r[2]}
+        for r in rows
+    ]
